@@ -11,6 +11,8 @@ app.get("/api/ip-details", (req, res) => {
   // Map loopback IPs to a public IP for testing
   if (clientIp === "::1" || clientIp === "127.0.0.1") {
     clientIp = "122.175.95.114"; // Example public IP
+  } else {
+    clientIp = clientIp.split(",")[0];
   }
 
   const geoData = geoip.lookup(clientIp);
