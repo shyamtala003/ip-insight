@@ -6,6 +6,7 @@ const port = 3000;
 
 app.get("/api/ip-details", (req, res) => {
   let clientIp = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
+  console.log(clientIp);
 
   // Map loopback IPs to a public IP for testing
   if (clientIp === "::1" || clientIp === "127.0.0.1") {
