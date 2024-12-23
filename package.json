@@ -1,18 +1,28 @@
 {
   "name": "ip-insight",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "main": "index.js",
   "scripts": {
     "dev": "node --watch index.js",
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "ip",
+    "geoip",
+    "timezone",
+    "location",
+    "details"
+  ],
+  "author": "Shyam Tala",
   "license": "ISC",
-  "description": "",
+  "description": "A utility to fetch IP details including country, timezone, and geo location.",
   "dependencies": {
     "express": "^4.21.2",
     "geoip-lite": "^1.4.10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shyamtala003/ip-insight"
   }
 }
