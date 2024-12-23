@@ -1,5 +1,10 @@
 const express = require("express");
 const geoip = require("geoip-lite");
+const countryName = require("./json/name.json");
+const capital = require("./json/capital.json");
+const currency = require("./json/currency.json");
+const iso = require("./json/iso.json");
+const getCurrentTimeInTimezone = require("./util/getTimeByTimezone");
 
 const app = express();
 const port = 3000;
@@ -26,11 +31,17 @@ app.get("/api/ip-details", (req, res) => {
       region: geoData.region || "Unknown",
       region_code: geoData.region || "Unknown",
       region_type: "",
-      country_name: geoData.country || "Unknown",
       country_code: geoData.country || "Unknown",
+      country_name: geoData.country ? countryName[geoData.country] : "Unknown",
+      capital: geoData.country ? capital[geoData.country] : "Unknown",
+      currency: geoData.country ? currency[geoData.country] : "Unknown",
+      iso: geoData.country ? iso[geoData.country] : "Unknown",
       latitude: geoData.ll ? geoData.ll[0] : null,
       longitude: geoData.ll ? geoData.ll[1] : null,
       timezone: geoData.timezone,
+      currentTime: geoData.timezone
+        ? getCurrentTimeInTimezone(geoData.timezone)
+        : "unknown",
     };
     res.json(ipDetails);
   } else {
